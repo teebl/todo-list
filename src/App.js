@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {DeleteButton} from './Components/DeleteButton.js'
+import {TaskForm} from './Components/TaskForm.js'
 
 class App extends Component {
 constructor(props) {
@@ -77,10 +78,23 @@ constructor(props) {
     return (
       <div className="todo-app">
         <h2>Todo</h2>
-        <DeleteButton />
+        
+        <TaskForm onSubmit={this.addTask} />
+        
+        
+       /*  this ought to have its own component (or stateless function) */
+        {this.state.tasks.map(item => {
+          return (
+            <li key={item.text}>
+              <input type="checkbox" checked={item.done} onChange={() => this.checkTask(item.text)} />
+              {item.text}
+            <DeleteButton name={item.text} onSubmit={this.deleteTask} />
+            </li> 
+            
+          )
+        })}
       </div>
-    )
-  }
+    )}
 }
 
 
