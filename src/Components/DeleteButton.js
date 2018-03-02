@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class DeleteButton extends React.Component {
+export class DeleteButton extends Component {
   constructor(props) {
     super(props);
     

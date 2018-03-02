@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import HTML5Backend from 'react-dnd-html5-backend';
 import './App.css';
-import {DeleteButton} from './Components/DeleteButton.js'
 import {TaskForm} from './Components/TaskForm.js'
+import {ListItem} from './Components/ListItem'
 
 class App extends Component {
 constructor(props) {
@@ -34,7 +34,7 @@ constructor(props) {
     
     let taskArray = this.state.tasks;
     
-    if (newTask != "") {
+    if (newTask !== "") {
       {
    taskArray.unshift({
         text: newTask,
@@ -78,24 +78,22 @@ constructor(props) {
     return (
       <div className="todo-app">
         <h2>Todo</h2>
-        
         <TaskForm onSubmit={this.addTask} />
-        
-        
-       /*  this ought to have its own component (or stateless function) */
+        <ul>
         {this.state.tasks.map(item => {
           return (
-            <li key={item.text}>
-              <input type="checkbox" checked={item.done} onChange={() => this.checkTask(item.text)} />
-              {item.text}
-            <DeleteButton name={item.text} onSubmit={this.deleteTask} />
-            </li> 
             
+            <ListItem 
+              task={item.text} 
+              checked={item.done} 
+              checkTask={this.checkTask} 
+              deleteTask={this.deleteTask} 
+            />
           )
         })}
+        </ul>
       </div>
     )}
 }
-
 
 export default App;
