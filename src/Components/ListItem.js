@@ -73,6 +73,6 @@ export class ListItem extends Component {
 // };
 
 
-//Passing the result of one function call to another
-const ds = DropTarget(ItemTypes.LISTITEM, listItemTarget, collect)(ListItem);
-export default DragSource(ItemTypes.LISTITEM, listItemSource, collect)(ds);
+// //Passing the result of one function call to another
+// const ds = DropTarget(ItemTypes.LISTITEM, listItemTarget, collect)(ListItem);
+// export default DragSource(ItemTypes.LISTITEM, listItemSource, collect)(ds);
