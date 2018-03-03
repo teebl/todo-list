@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
+import HTML5Backend from 'react-dnd-html5-backend';
 import './App.css';
 import {TaskForm} from './Components/TaskForm.js'
 import {ListItem} from './Components/ListItem'
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-
-
 
 class App extends Component {
 constructor(props) {
@@ -13,7 +10,7 @@ constructor(props) {
     
       this.state = {
         tasks : [{
-          text: 'Clean my room.',
+          text: 'Breen my room.',
           done: false
         }, {
           text: 'Take out the garbage.',
@@ -28,24 +25,7 @@ constructor(props) {
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.checkTask = this.checkTask.bind(this);
-    this.moveTask = this.moveTask.bind(this);
-
 }
-
-//This is for dragging  
-moveTask(dragTask, hoverTask) {
-    let taskArray = this.state.tasks;
-    let dragIndex = taskArray.map(t => t.text).indexOf(dragTask);
-    let hoverIndex = taskArray.map(t => t.text).indexOf(hoverTask);
-
-    //for now just adds before hovered element, but would like to change that
-    taskArray.splice(hoverIndex, 0, dragTask);
-
-    //then deletes task at old location
-    taskArray.splice(dragIndex, 1);
-
-
-  }
 
 
   //This will recieve a new task from the child and update the state, which in turn updates the parent
@@ -54,7 +34,6 @@ moveTask(dragTask, hoverTask) {
     
     let taskArray = this.state.tasks;
     
-
     if (newTask !== "") {
       {
    taskArray.unshift({
@@ -73,7 +52,7 @@ moveTask(dragTask, hoverTask) {
     
     let taskArray = this.state.tasks;
     
-    let index = taskArray.map(t => t.text).indexOf(task);
+    var index = taskArray.map(t => t.text).indexOf(task);
   
     taskArray.splice(index, 1);
     
@@ -100,16 +79,15 @@ moveTask(dragTask, hoverTask) {
       <div className="todo-app">
         <h2>Todo</h2>
         <TaskForm onSubmit={this.addTask} />
-        <ul onDragOver={this.dragOver}>
+        <ul>
         {this.state.tasks.map(item => {
           return (
             
-            <ListItemWrapped
+            <ListItem 
               task={item.text} 
               checked={item.done} 
               checkTask={this.checkTask} 
-              deleteTask={this.deleteTask}
-              moveTask={this.moveTask} 
+              deleteTask={this.deleteTask} 
             />
           )
         })}
@@ -118,4 +96,4 @@ moveTask(dragTask, hoverTask) {
     )}
 }
 
-export default DragDropContext(HTML5Backend)(App);
+export default App;
