@@ -3,6 +3,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import './App.css';
 import {TaskForm} from './Components/TaskForm.js'
 import {ListItem} from './Components/ListItem'
+import FaIconPack from 'react-icons/lib/fa'
 
 class App extends Component {
 constructor(props) {
@@ -11,12 +12,16 @@ constructor(props) {
       this.state = {
         tasks : [{
           text: 'Breen my room.',
+          priority: true,
           done: false
+
         }, {
           text: 'Take out the garbage.',
+          priority: false,
           done: false
         }, {
           text: 'Learn React',
+          priority: false,
           done: true
       }]
         
@@ -25,6 +30,8 @@ constructor(props) {
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.checkTask = this.checkTask.bind(this);
+    this.priorityTask = this.priorityTask.bind(this);
+
 }
 
 
@@ -36,7 +43,7 @@ constructor(props) {
     
     if (newTask !== "") {
       {
-   taskArray.unshift({
+   taskArray.push({
         text: newTask,
         done:false
     });
@@ -63,12 +70,37 @@ constructor(props) {
   
     let taskArray = this.state.tasks;
     
-    var index = taskArray.map(t => t.text).indexOf(task);
+    let index = taskArray.map(t => t.text).indexOf(task);
   
     taskArray[index].done = !taskArray[index].done;
   
     this.setState({tasks: taskArray});
   
+  }
+
+  priorityTask(task) {
+
+    let taskArray = this.state.tasks;
+    let index = taskArray.map(t => t.text).indexOf(task);
+    let priorityIndex = taskArray.map(t => t.priority).indexOf(false)
+
+    //change value of priority
+    taskArray[index].priority = !(taskArray[index].priority);
+
+    //place task before first non-priority task if now priority, if not, put after
+    if (taskArray[index].priority === true) {
+      
+      taskArray.splice((priorityIndex), 0, taskArray.splice(index, 1)[0]);
+
+    } else {
+
+      taskArray.splice((priorityIndex-1), 0, taskArray.splice(index, 1)[0])
+    }
+    
+
+    this.setState({tasks: taskArray});
+
+
   }
   
   render() {
@@ -85,9 +117,11 @@ constructor(props) {
             
             <ListItem 
               task={item.text} 
-              checked={item.done} 
+              checked={item.done}
+              priority= {item.priority} 
               checkTask={this.checkTask} 
-              deleteTask={this.deleteTask} 
+              deleteTask={this.deleteTask}
+              priorityTask={this.priorityTask} 
             />
           )
         })}

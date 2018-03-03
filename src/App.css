@@ -1,3 +1,12 @@
+{
+    box-sizing: border-box;
+}
+
+body {
+background-color: gray;
+justify-content: center;
+}
+
 .App {
   text-align: center;
 }
@@ -25,4 +34,37 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* my css */
+
+#priority {
+  background-color: red;
+}
+
+.todo-app {
+  max-width: 1400px;
+  background-color: blue;
+  margin: 40px auto 0 auto;  
+  display:flex-inline;
+  justify-content: center
+
+  
+}
+
+h2 {
+  text-align:center;
+}
+
+button {
+  border:none;
+  background-color:#599bb3;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:12px;
+  padding:4px 16px;
+  text-decoration:none;
+  margin: 5px;
 }

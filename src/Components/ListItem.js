@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { DeleteButton } from './DeleteButton';
+import PriorityButton from './PriorityButton'
 
 export class ListItem extends Component {
 	constructor(props) {
@@ -13,12 +14,16 @@ export class ListItem extends Component {
 		this.props.checkTask(this.props.task);
 	}
 
+
 	render() {
-		const { connectDragSource, isDragging } = this.props;
+		const styleId = (this.props.priority === true) ? "priority" : "";
+
 		return (
 			<li  		
+      			id={styleId}
       			key={this.props.task}
-      		>
+  			>
+			
 			<input 
 				type="checkbox" 
 				checked={this.props.checked} 
@@ -27,7 +32,10 @@ export class ListItem extends Component {
 			{this.props.task}
 			<DeleteButton 
 				name={this.props.task} 
-				onSubmit={this.props.deleteTask} /> 
+				onSubmit={this.props.deleteTask} />
+			<PriorityButton
+				name={this.props.task}
+				onSubmit={this.props.priorityTask} /> 
 			</li>
 
      
