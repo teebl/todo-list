@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import HTML5Backend from 'react-dnd-html5-backend';
 import './App.css';
 import {TaskForm} from './Components/TaskForm.js'
 import {ListItem} from './Components/ListItem'
-import FaIconPack from 'react-icons/lib/fa'
 
 class App extends Component {
 constructor(props) {
@@ -79,35 +77,43 @@ constructor(props) {
   }
 
   priorityTask(task) {
-
+    
+    
     let taskArray = this.state.tasks;
     let index = taskArray.map(t => t.text).indexOf(task);
     let priorityIndex = taskArray.map(t => t.priority).indexOf(false)
-    console.log('priorityIndex is ' + priorityIndex);
-    //change value of priority
-    taskArray[index].priority = !(taskArray[index].priority);
-
-    //place task before first non-priority task if now priority, if not, put after
-    //if no non-priority tasks, put at end of list
-    if (priorityIndex === -1) {
       
-      taskArray.splice(taskArray.length, 0, taskArray.splice(index, 1)[0]);
+    //ignore if task marked as done
+    if (taskArray[index].done === false) {
+      //change value of priority
+      taskArray[index].priority = !(taskArray[index].priority);
 
-    } else if (taskArray[index].priority === true) {
+      //place task before first non-priority task if now priority, if not, put after
+      //if no non-priority tasks, put at end of list
+      if (priorityIndex === -1) {
+        
+        taskArray.splice(taskArray.length, 0, taskArray.splice(index, 1)[0]);
+
+      } else if (taskArray[index].priority === true) {
+        
+        taskArray.splice(priorityIndex, 0, taskArray.splice(index, 1)[0]);
+
+      } else {
+
+        taskArray.splice((priorityIndex-1), 0, taskArray.splice(index, 1)[0])
+      }
       
-      taskArray.splice(priorityIndex, 0, taskArray.splice(index, 1)[0]);
 
-    } else {
+      this.setState({tasks: taskArray});
 
-      taskArray.splice((priorityIndex-1), 0, taskArray.splice(index, 1)[0])
+
     }
-    
+  }
 
-    this.setState({tasks: taskArray});
-
+  componentDidMount() {
+    //If the tasks needed to be fetched from a database, this is where it would happen
 
   }
-  
   render() {
     const items = this.state;
     const sort = this.props.sort;
@@ -115,10 +121,8 @@ constructor(props) {
     return (
       <div className="todo-app">
         <div className="header">
-          <h2>Todo</h2>
-          <span>
+          <h1>Todo</h1>
           <TaskForm onSubmit={this.addTask} />
-          </span>
         </div>
         <ul>
         {this.state.tasks.map(item => {

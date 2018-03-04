@@ -1,5 +1,7 @@
-{
-    box-sizing: border-box;
+
+
+html {
+  overflow-y: scroll;
 }
 
 body {
@@ -13,8 +15,10 @@ justify-content: center;
 
 .header {
   background-color: #3D2B56;
-  height: 80px;
+  height: 120px;
   padding: 20px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+
 }
 
 .priority {
@@ -25,14 +29,42 @@ justify-content: center;
   max-width: 800px;
   margin: 40px auto;  
   display:flex-inline;
-  justify-content: center
-
-  
+  justify-content: center  
 }
 
-h2 {
+h1 {
   text-align:center;
   color:#ffffff;
+  text-shadow: 0px 3px 15px rgba(0,0,0,.5);
+
+}
+
+.text-box {
+  width:100%;
+  display:flex;
+  justify-content: center;
+
+}
+
+input[type=text] {
+  width: 500px;
+  border: 1px; 
+  border-radius: 0;
+  padding: 6px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  -webkit-appearance: none;
+}
+input[type=submit] {
+  max-width:100px;
+  border:none;
+  background-color:#599bb3;
+  display:inline-block;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  cursor:pointer;
+  color:#ffffff;  
+  padding: 6px 12px;
+  margin: 5px 0px;
+  flex:1;
 }
 
 ul {
@@ -46,19 +78,13 @@ li {
   display:flex;
   margin: 5px;
   background-color: navy;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 span {
   display: inline-blockwe;
   flex: 6;
-  margin: auto;
-}
-
-.text-box {
-  display:flex;
-  flex:2;
-  justify-content: center;
-
+  margin: auto 10px;
 }
 
 button {
@@ -66,6 +92,7 @@ button {
   border:none;
   background-color:#599bb3;
   display:inline-block;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   cursor:pointer;
   color:#ffffff;  
   padding:4px 16px;
@@ -80,5 +107,10 @@ button:hover {
 .checked {
   text-decoration:line-through;
   background-color:grey;
-  color:darkgrey
+  color:darkgrey;
+}
+
+.checkmark {
+/*  background-color: #599bb3;*/
+  margin: auto auto auto 5px;
 }

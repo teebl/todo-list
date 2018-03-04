@@ -20,6 +20,12 @@ export class TaskForm extends React.Component {
     this.refs.input.value = "";
 
     }
+  
+  //Prevents uneccesary updates. TaskForm never needs a render after mount
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     
     return (

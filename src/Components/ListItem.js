@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DeleteButton }  from './DeleteButton';
 import { PriorityButton } from './PriorityButton';
-import  CheckBox  from './CheckBox';
+import  CheckButton  from './CheckButton';
 import classNames from 'classnames';
 
 export class ListItem extends Component {
@@ -16,9 +16,13 @@ export class ListItem extends Component {
 		this.props.checkTask(this.props.task);
 	}
 
+	//ignore update if no new props
+	shouldComponentUpdate(nextProps, nextState) {
+		return !(nextProps.checked === this.props.checked && nextProps.priority === this.props.priority);
+	}
+
 	render() {
 		
-		//TODO: make a switch to override priority CSS when task checked
 		const priorityClass = this.props.priority ? "priority" : "";
 		const checkedClass = this.props.checked ? "checked" : "";
 
@@ -29,20 +33,12 @@ export class ListItem extends Component {
       			className={classNames(priorityClass, checkedClass)}
       			key={this.props.task}
   			>
-  			<CheckBox
-  			check={this.props.checked}
-  			checkTask={this.props.checkTask}
-  			task={this.props.task}
-  			/>
-			<div className={"control-group"}>
-			<input 
-				class="control-checkbox"
-				type="checkbox" 
-				checked={this.props.checked} 
-				onClick={this.checkListener} 
-			/>
-			</div>    
 			<span className={checkedClass}>{this.props.task}</span>
+			<CheckButton
+				check={this.props.checked}
+				checkTask={this.props.checkTask}
+				task={this.props.task}
+			/>
 			<DeleteButton 
 				name={this.props.task} 
 				onSubmit={this.props.deleteTask} />

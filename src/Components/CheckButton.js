@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FaCheck } from 'react-icons/lib/fa';
 
-export default class CheckBox extends Component {
+export default class CheckButton extends Component {
 	constructor(props) {
 		super(props)
 
@@ -15,7 +15,7 @@ export default class CheckBox extends Component {
 
 	render() {
 		return (
-			<div><FaCheck onClick={this.checkListener} /></div>
+			<button onClick={this.checkListener}><FaCheck /></button>
 	)
 }
 }

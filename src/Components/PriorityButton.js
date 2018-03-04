@@ -10,7 +10,6 @@ export class PriorityButton extends Component {
   }
   
   priorityListener(e) {
-      console.log('something was prioritized!' + this.props.name);
       this.props.onSubmit(this.props.name);
   }
   
