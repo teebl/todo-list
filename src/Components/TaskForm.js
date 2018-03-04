@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class TaskForm extends React.Component {
+export class TaskForm extends Component {
 	constructor(props) {
   	super(props);
     

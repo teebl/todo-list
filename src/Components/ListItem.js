@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { DeleteButton }  from './DeleteButton';
-import { PriorityButton } from './PriorityButton';
-import  CheckButton  from './CheckButton';
+import DeleteButton  from './DeleteButton';
+import PriorityButton from './PriorityButton';
+import CheckButton from './CheckButton';
 import classNames from 'classnames';
 
-export class ListItem extends Component {
+export default class ListItem extends Component {
 	constructor(props) {
 		super(props);
 

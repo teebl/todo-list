@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FaClose } from 'react-icons/lib/fa';
 
-export class DeleteButton extends Component {
+export default class DeleteButton extends Component {
   constructor(props) {
     super(props);
     

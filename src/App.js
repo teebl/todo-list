@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import {TaskForm} from './Components/TaskForm.js';
+import ListItem from './Components/ListItem';
 import './App.css';
-import {TaskForm} from './Components/TaskForm.js'
-import {ListItem} from './Components/ListItem'
 
 class App extends Component {
-constructor(props) {
+  constructor(props) {
     super(props);
     
       this.state = {
         tasks : [{
-          text: 'Clean my room.',
+          text: 'Clean my room',
           priority: true,
           done: false
 
         }, {
-          text: 'Take out the garbage.',
+          text: 'Take out the garbage',
           priority: false,
           done: false
         }, {
@@ -35,35 +35,33 @@ constructor(props) {
 
   //This will recieve a new task from the child and update the state, which in turn updates the parent
   addTask(newTask) {
-    console.log('adding ' + newTask);
     
     let taskArray = this.state.tasks;
     
     if (newTask !== "") {
-      {
-   taskArray.push({
+      
+      taskArray.push({
         text: newTask,
         done:false
-    });
+      });
+      
+    this.setState({tasks: taskArray});
+
     }
-    this.setState({
-      tasks: taskArray,
-});
+  }
 
-}
-}
-
+  //Finds index of task, then splices into temporary array, setstates temporary array
   deleteTask(task) {
     
     let taskArray = this.state.tasks;
-    
     var index = taskArray.map(t => t.text).indexOf(task);
   
     taskArray.splice(index, 1);
     
-    this.setState({task: taskArray });
+    this.setState({tasks: taskArray});
   }
 
+  //Finds index of task, flips the bool of task's done element, and setStates the temporary array
   checkTask(task) {
   
     let taskArray = this.state.tasks;
@@ -76,6 +74,8 @@ constructor(props) {
   
   }
 
+  //Finds the index of task, ignoring completed tasks
+  //Will either move up or down the list depending on whether or not the task was marked as a priority
   priorityTask(task) {
     
     
@@ -114,18 +114,21 @@ constructor(props) {
     //If the tasks needed to be fetched from a database, this is where it would happen
 
   }
+
   render() {
-    const items = this.state;
-    const sort = this.props.sort;
-    
     return (
-      <div className="todo-app">
-        <div className="header">
+      
+      <div 
+        className="todo-app">
+        <div 
+          className="header">
           <h1>Todo</h1>
-          <TaskForm onSubmit={this.addTask} />
+          <TaskForm 
+            onSubmit={this.addTask} />
         </div>
         <ul>
         {this.state.tasks.map(item => {
+          
           return (
             
             <ListItem 
@@ -136,6 +139,7 @@ constructor(props) {
               deleteTask={this.deleteTask}
               priorityTask={this.priorityTask} 
             />
+          
           )
         })}
         </ul>

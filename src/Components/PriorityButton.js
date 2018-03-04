@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FaExclamationCircle } from 'react-icons/lib/fa'
 
 
-export class PriorityButton extends Component {
+export default class PriorityButton extends Component {
   constructor(props) {
     super(props);
     
