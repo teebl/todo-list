@@ -17,6 +17,8 @@ export class TaskForm extends React.Component {
   	console.log ('something was submitted: ' + this.refs.input.value);
     e.preventDefault();
    	this.props.onSubmit(this.refs.input.value);
+    this.refs.input.value = "";
+
     }
   render() {
     

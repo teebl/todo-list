@@ -11,7 +11,7 @@ constructor(props) {
     
       this.state = {
         tasks : [{
-          text: 'Breen my room.',
+          text: 'Clean my room.',
           priority: true,
           done: false
 
@@ -83,14 +83,19 @@ constructor(props) {
     let taskArray = this.state.tasks;
     let index = taskArray.map(t => t.text).indexOf(task);
     let priorityIndex = taskArray.map(t => t.priority).indexOf(false)
-
+    console.log('priorityIndex is ' + priorityIndex);
     //change value of priority
     taskArray[index].priority = !(taskArray[index].priority);
 
     //place task before first non-priority task if now priority, if not, put after
-    if (taskArray[index].priority === true) {
+    //if no non-priority tasks, put at end of list
+    if (priorityIndex === -1) {
       
-      taskArray.splice((priorityIndex), 0, taskArray.splice(index, 1)[0]);
+      taskArray.splice(taskArray.length, 0, taskArray.splice(index, 1)[0]);
+
+    } else if (taskArray[index].priority === true) {
+      
+      taskArray.splice(priorityIndex, 0, taskArray.splice(index, 1)[0]);
 
     } else {
 
@@ -109,8 +114,12 @@ constructor(props) {
     
     return (
       <div className="todo-app">
-        <h2>Todo</h2>
-        <TaskForm onSubmit={this.addTask} />
+        <div className="header">
+          <h2>Todo</h2>
+          <span>
+          <TaskForm onSubmit={this.addTask} />
+          </span>
+        </div>
         <ul>
         {this.state.tasks.map(item => {
           return (

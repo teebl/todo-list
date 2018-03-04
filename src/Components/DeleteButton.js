@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaClose } from 'react-icons/lib/fa';
 
 export class DeleteButton extends Component {
   constructor(props) {
@@ -8,11 +9,10 @@ export class DeleteButton extends Component {
   }
   
   deleteListener(e) {
-      console.log('something was deleted!' + this.props.name);
       this.props.onSubmit(this.props.name);
   }
   
   render() {
-    return <button onClick={this.deleteListener}>Delete</button>
+    return <button onClick={this.deleteListener}><FaClose /></button>
   }
 }
