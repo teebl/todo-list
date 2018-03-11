@@ -1,0 +1,1 @@
+function() {let thing = "test"; const another = "tested"}`

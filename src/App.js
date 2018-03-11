@@ -36,7 +36,7 @@ class App extends Component {
   //This will recieve a new task from the child and update the state, which in turn updates the parent
   addTask(newTask) {
     
-    let taskArray = this.state.tasks;
+    const taskArray = [...this.state.tasks];
     
     if (newTask !== "") {
       
@@ -53,8 +53,8 @@ class App extends Component {
   //Finds index of task, then splices into temporary array, setstates temporary array
   deleteTask(task) {
     
-    let taskArray = this.state.tasks;
-    var index = taskArray.map(t => t.text).indexOf(task);
+    const taskArray = [...this.state.tasks];
+    const index = taskArray.map(t => t.text).indexOf(task);
   
     taskArray.splice(index, 1);
     
@@ -64,9 +64,8 @@ class App extends Component {
   //Finds index of task, flips the bool of task's done element, and setStates the temporary array
   checkTask(task) {
   
-    let taskArray = this.state.tasks;
-    
-    let index = taskArray.map(t => t.text).indexOf(task);
+    const taskArray = [...this.state.tasks]; 
+    const index = taskArray.map(t => t.text).indexOf(task);
   
     taskArray[index].done = !taskArray[index].done;
   
@@ -79,9 +78,9 @@ class App extends Component {
   priorityTask(task) {
     
     
-    let taskArray = this.state.tasks;
-    let index = taskArray.map(t => t.text).indexOf(task);
-    let priorityIndex = taskArray.map(t => t.priority).indexOf(false)
+    const taskArray = [...this.state.tasks];
+    const index = taskArray.map(t => t.text).indexOf(task);
+    const priorityIndex = taskArray.map(t => t.priority).indexOf(false)
       
     //ignore if task marked as done
     if (taskArray[index].done === false) {

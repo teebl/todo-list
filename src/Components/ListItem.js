@@ -17,9 +17,9 @@ export default class ListItem extends Component {
 	}
 
 	//ignore update if no new props
-	shouldComponentUpdate(nextProps, nextState) {
-		return !(nextProps.checked === this.props.checked && nextProps.priority === this.props.priority);
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	return !(nextProps.checked === this.props.checked && nextProps.priority === this.props.priority);
+	// }
 
 	render() {
 		
