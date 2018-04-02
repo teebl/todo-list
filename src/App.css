@@ -18,6 +18,7 @@ justify-content: center;
   height: 120px;
   padding: 20px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  min-width: 90%;
 
 }
 
@@ -26,7 +27,8 @@ justify-content: center;
 }
 
 .todo-app {
-  max-width: 800px;
+  max-width: 90%;
+  width: 800px;
   margin: 40px auto;  
   display:flex-inline;
   justify-content: center  
@@ -40,22 +42,33 @@ h1 {
 }
 
 .text-box {
-  width:100%;
-  display:flex;
+  width:90%;
+  background-color: orange;
+  display: block;
+  align-content: center;
   justify-content: center;
+
 
 }
 
+.text-box form {
+  justify-content: center;
+  display: flex;
+  height: 30px;
+}
 input[type=text] {
-  width: 500px;
+  width: 90%;
   border: 1px; 
   border-radius: 0;
   padding: 6px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   -webkit-appearance: none;
+  display: inline-block;
+  flex-grow: 5;
 }
+
 input[type=submit] {
-  max-width:100px;
+  width: 60px;
   border:none;
   background-color:#599bb3;
   display:inline-block;
@@ -63,8 +76,6 @@ input[type=submit] {
   cursor:pointer;
   color:#ffffff;  
   padding: 6px 12px;
-  margin: 5px 0px;
-  flex:1;
 }
 
 ul {
@@ -82,7 +93,7 @@ li {
 }
 
 span {
-  display: inline-blockwe;
+  display: inline-block;
   flex: 6;
   margin: auto 10px;
 }
