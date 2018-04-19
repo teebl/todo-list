@@ -16,9 +16,8 @@ justify-content: center;
 .header {
   background-color: #3D2B56;
   height: 120px;
-  padding: 20px;
+  padding: 20px 40px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-  min-width: 90%;
 
 }
 
@@ -42,7 +41,7 @@ h1 {
 }
 
 .text-box {
-  width:90%;
+  width:100%;
   background-color: orange;
   display: block;
   align-content: center;
@@ -55,6 +54,7 @@ h1 {
   justify-content: center;
   display: flex;
   height: 30px;
+  background-color:pink;
 }
 input[type=text] {
   width: 90%;
@@ -68,7 +68,7 @@ input[type=text] {
 }
 
 input[type=submit] {
-  width: 60px;
+  width: auto;
   border:none;
   background-color:#599bb3;
   display:inline-block;
@@ -119,4 +119,13 @@ button:hover {
   text-decoration:line-through;
   background-color:grey;
   color:darkgrey;
+}
+
+@media only screen and (max-width: 600px) {
+
+
+    button {
+      max-width:25px;
+      padding: 1px 1px;
+    }
 }
