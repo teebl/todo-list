@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { FaCheck } from 'react-icons/lib/fa';
+import React, { Component } from "react";
+import { FaCheck } from "react-icons/lib/fa";
 
 export default class CheckButton extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 
-	this.checkListener = this.checkListener.bind(this);
+		this.checkListener = this.checkListener.bind(this);
 	}
 
 	checkListener(e) {
@@ -15,7 +15,9 @@ export default class CheckButton extends Component {
 
 	render() {
 		return (
-			<button onClick={this.checkListener}><FaCheck /></button>
-	)
-}
+			<button onClick={this.checkListener}>
+				<FaCheck />
+			</button>
+		);
+	}
 }
